@@ -1,5 +1,15 @@
 # Prompts principaux
 
+## A1 -  Récupérer le projet
+
+```text
+cd /formation
+```
+
+```text
+git clone https://github.com/wanegain3/cc-tp-hexgl.git cc-tp-hexgl
+```
+
 ## A2 - Explorer le legacy
 
 ```text
@@ -50,7 +60,14 @@ Cf. /A3-figer-les-comportements pour un exemple des nouveaux tests et des captur
 ## B1 - Créer une branche dédiée
 
 ```text
+git status
+```
+
+```text
 git switch -c refactor/company-event
+```
+
+```text
 git branch
 ```
 
@@ -130,15 +147,7 @@ Structure le plan avec :
 - plan d’implémentation en 3 à 5 petites étapes
 
 Ne code rien.
-```
-
-Review :
-
-```text
-Le plan est validé.
-Enregistre le plan validé dans : work/company-event/plan.md
-Ne l'enrichis pas et ne commence aucune implémentation.
-Ne modifie aucun autre fichier.
+Si je valide le plan, enregistre-le dans work/company-event/plan.md mais ne l’implémente pas.
 ```
 
 Cf. /B4-B5-plan pour une exemple de plan.md
@@ -159,7 +168,7 @@ Règles :
 - Ne touche pas au gameplay ni au code existant hors du périmètre prévu.
 - Relance les tests avec la commande documentée dans `CLAUDE.md`.
 - Si un test échoue, corrige la cause sans supprimer ni affaiblir le test.
-- Si l'étape modifie le rendu ou les interactions, vérifie-les dans le navigateur si les outils disponibles le permettent. Sinon, indique les contrôles manuels à effectuer, en t'appuyant sur les captures de référence.
+- Si l'étape modifie le rendu ou les interactions, vérifie-les dans le navigateur seulement si les outils disponibles le permettent (ex:playwright), mais sans créer de script de pilotage du navigateur (CDP, etc.)
 - N’effectue aucun commit.
 - Arrête-toi après cette étape.
 - Résume les fichiers modifiés, les changements effectués et les résultats des vérifications.
@@ -182,7 +191,7 @@ Règles :
 - Ne touche pas au gameplay ni au code existant hors du périmètre prévu.
 - Relance les tests avec la commande documentée dans `CLAUDE.md`.
 - Si un test échoue, corrige la cause sans supprimer ni affaiblir le test.
-- Si l’étape modifie le rendu ou les interactions, vérifie-les dans le navigateur si les outils disponibles le permettent. Sinon, indique les contrôles manuels à effectuer, en t’appuyant sur les captures de référence.
+- Si l'étape modifie le rendu ou les interactions, vérifie-les dans le navigateur seulement si les outils disponibles le permettent (ex:playwright), mais sans créer de script de pilotage du navigateur (CDP, etc.)
 - N’effectue aucun commit.
 - Arrête-toi après cette étape.
 - Résume les fichiers modifiés, les changements effectués et les résultats des vérifications.
@@ -242,3 +251,104 @@ Ne fais aucun push.
 ## B10 - Automatisations Git
 
 Cf. /B10-automatisations-git pour les fichiers du chapitre sur Git, GitHub, et CI / CD
+
+### Connecter le dépôt distant
+
+Connexion à votre propre dépôt :
+```text
+cd ..
+```
+
+```text
+git remote -v
+```
+
+```text
+git remote set-url origin https://github.com/votre-compte/cc-tp-hexgl-NOM.git
+```
+
+```text
+git remote -v
+```
+
+Envoi de vos branches locales sur le dépôt distant :
+```text
+git push -u origin main
+```
+
+```text
+git push -u origin refactor/company-event
+```
+
+### Hook pre-commit
+
+```text
+git config core.hooksPath .githooks
+```
+
+(pour sur linux/mac)
+```text
+chmod +x .githooks/pre-commit
+```
+
+```text
+git add .githooks/pre-commit
+```
+
+```text
+git commit -m "Ajout du hook pre-commit"
+```
+
+### Ajout de la CI
+
+```text
+git add .github/workflows/ci.yml
+```
+
+```text
+git commit -m "Ajout de la CI"
+```
+
+```text
+git push
+```
+
+### Ajout des github actions
+
+```text
+winget install --id GitHub.cli -e
+```
+
+```text
+/install-github-app
+```
+
+```text
+git switch main
+```
+
+```text
+git pull
+```
+
+### Ajout de la CD
+
+```text
+git switch main
+```
+
+```text
+git pull
+```
+
+```text
+git add .github/workflows/cd.yml
+```
+
+```text
+git commit -m "Ajout de la CD"
+```
+
+```text
+git push
+```
