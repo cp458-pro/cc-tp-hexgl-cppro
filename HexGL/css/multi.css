@@ -123,6 +123,7 @@ html, body {
   font-family: 'BebasNeueRegular', arial, sans-serif;
   text-transform: uppercase;
   color: #4190bb;
+  color: var(--brand-menu, #4190bb);
 }
 
 #menu div {
@@ -149,6 +150,7 @@ html, body {
 
 #menu div:hover {
   color: #f66439;
+  color: var(--brand-accent, #f66439);
   -webkit-transform: scaleY(1.0);
   transform: scaleY(1.1);
 }
@@ -156,10 +158,37 @@ html, body {
 #start {
   font-size: 1.8em;
   color: #f66439;
+  color: var(--brand-accent, #f66439);
 }
 
 #start:hover {
   color: #f8854b !important;
+  color: var(--brand-accent-hover, #f8854b) !important;
+}
+
+#brand-block {
+  position: absolute;
+  right: 0;
+  bottom: 3%;
+  left: 0;
+  z-index: 2;
+  text-align: center;
+  font-family: 'BebasNeueRegular', arial, sans-serif;
+  text-transform: uppercase;
+  color: #4190bb;
+  color: var(--brand-menu, #4190bb);
+}
+
+#brand-block span {
+  display: block;
+}
+
+#brand-name {
+  font-size: 1.6em;
+}
+
+#brand-welcome {
+  font-size: 1.2em;
 }
 
 #step-2 {
